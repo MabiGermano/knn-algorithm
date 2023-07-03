@@ -1,8 +1,8 @@
 import { trainingProcess, testProcess } from "./data-process.js";
 
 const k = 3;
-const dbTraining = trainingProcess('./assets/training-sample-minor');
-const testList = testProcess('./assets/test-sample-minor');
+const dbTraining = trainingProcess('./assets/training-sample');
+const testList = testProcess('./assets/test-sample');
 
 function findDistance(testElement, dbElement) {
     if (testElement.length == dbElement.attributes.length)
@@ -28,7 +28,7 @@ testList.forEach(testElement => {
         return 0;
     });
 
-    appointClass(distanceList.slice(0, k));
+    console.log(appointClass(distanceList.slice(0, k))); 
 
 });
 
