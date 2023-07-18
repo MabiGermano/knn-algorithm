@@ -3,12 +3,12 @@ import * as path from 'path';
 
 const _regex = { newLine: /\r?\n/ }
 
-export function trainingProcess(trainingSamplePath) {
+export function parseData(trainingSamplePath) {
     const fileLoaded = fs.readFileSync(path.resolve(trainingSamplePath), 'utf-8');
     return fileLoaded.split(_regex.newLine).map((line) => {
-        const attributeList = retrieveAttributes(line);
+        const attributeList = _retrieveAttributes(line);
         return {
-            classType: attributeList.shift(),
+            classType: attributeList.shift().toString(),
             attributes: attributeList
         }
     });
@@ -17,12 +17,10 @@ export function trainingProcess(trainingSamplePath) {
 export function testProcess(testSamplePath) {
     const fileLoaded = fs.readFileSync(path.resolve(testSamplePath), 'utf-8');
     return fileLoaded.split(_regex.newLine).map((line) => {
-        return retrieveAttributes(line);
+        return _retrieveAttributes(line);
     });
 }
 
-export function retrieveAttributes(line) {
-    return line.split(',');
+function _retrieveAttributes(line, charDelimiter = ',') {
+    return line.split(charDelimiter);
 }
-
-// console.log(memorize());
